@@ -3,9 +3,9 @@ import os
 import re
 
 EXTENSION_PATTERN = r"\.\w*$"
-COLOR_OF_MATCHES = "\033[31m"
-COLOR_OF_SUBSTITUTIONS = "\033[32m"
-RESET_COLOR = "\033[39m"
+COLOR_OF_MATCHES = "\033[41m"
+COLOR_OF_SUBSTITUTIONS = "\033[42m"
+RESET_COLOR = "\033[49m"
 
 
 def compare_paths(p1: str, p2: str) -> bool:
