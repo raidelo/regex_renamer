@@ -77,7 +77,7 @@ def format_substitution(
     :color:    the color to format the pattern found with
     :reset_color:    the color to reset the rest of the string that does'nt match with the pattern
     """
-    return "{}{}{}".format(color, subs, reset_color).join(re.split(pattern, string))
+    return re.sub(pattern, color + subs + reset_color, string)
 
 
 if __name__ == "__main__":
