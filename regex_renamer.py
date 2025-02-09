@@ -104,6 +104,14 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
+        "-d",
+        "--delete",
+        dest="delete",
+        action="store_true",
+        help="to delete all matches with the pattern (default: False)",
+    )
+
+    parser.add_argument(
         "-t",
         "--test",
         dest="test",
@@ -188,10 +196,13 @@ if __name__ == "__main__":
             if pos:
                 name, ext = name[: pos.start()], name[pos.start() :]
 
-        # If the `replacement` argument is not present, then print the files that match with the `pattern`.
-        if not args.replacement:
+        # If neither the `replacement` argument nor the `delete` flag are present, then print the files that match with the `pattern`.
+        if not args.replacement and not args.delete:
             print(format_match(args.pattern, name))
             continue
+        # If the `delete` flag is present, change the value of the `replacement` argument to a empty string.
+        elif args.delete:
+            args.replacement = ""
 
         # Try to replace the `pattern` with the `replacement` string.
         new_name = re.sub(args.pattern, args.replacement, name) + (
